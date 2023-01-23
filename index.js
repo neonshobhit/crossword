@@ -136,6 +136,7 @@ const success = async (questions, i) => {
 
   // console.log(i)
   document.getElementById('ques'+i).style.color = "blue"
+  console.log(totalQuestions, totalSuccess)
   if (++totalSuccess === totalQuestions) {
     finalColor()
   };
@@ -329,7 +330,7 @@ const run = async () => {
     return alert("Ho gya idhar!")
   }
 
-  const date = new Date().getDate()
+  const date = 25 // new Date().getDate()
   const resp = await fetch(dburl+'questions?select=*&date=lt.'+date, {
     method: 'GET',
     headers: header

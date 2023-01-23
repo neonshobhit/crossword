@@ -7,8 +7,7 @@ const header = {
   "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZ3BmeXZ6c2FpbnB0d2FqbGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4MjcxMzAsImV4cCI6MTk3MzQwMzEzMH0.-8ipKols5RVwoxi_g5rxY5Z4tWHC4wDZIaSvjtGfw-g",
   "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZ3BmeXZ6c2FpbnB0d2FqbGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4MjcxMzAsImV4cCI6MTk3MzQwMzEzMH0.-8ipKols5RVwoxi_g5rxY5Z4tWHC4wDZIaSvjtGfw-g"
 }
-const slackUrl = 'https://slack.com/api/chat.postMessage', slackAuth = atob('eG94Yi00NTk1MDU2OTkzNTcwLTQ2NzYyODQ3Mzg4MzctZEI2SmFTSmhBaFR0RHJUbUNLWFhveFlO'), slackChannel = "C04L92PFT5J"
-
+const slackUrl = 'https://ojgpfyvzsainptwajlci.functions.supabase.co/slackmsg', slackAuth = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZ3BmeXZ6c2FpbnB0d2FqbGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4MjcxMzAsImV4cCI6MTk3MzQwMzEzMH0.-8ipKols5RVwoxi_g5rxY5Z4tWHC4wDZIaSvjtGfw-g'
 function jsonToForm(json) {
 var formBody = [];
 for (var property in json) {
@@ -23,19 +22,7 @@ return formBody
 async function login () {
   const inp = document.getElementById("loginText")
   if (inp.value.toUpperCase() === "SHOBHIT") {
-    let msg = '*Successfully logged in!*\n Here is your gift card!:tada:'
-    await fetch(slackUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: jsonToForm({
-        "channel": slackChannel,
-        "text": msg,
-        'token': slackAuth
-      })
-    })
-
+    
     const resp = await fetch(dburl+'cards?select=*&type=eq.LOGIN&status=eq.OPEN&refId=eq.1', {
       method: 'GET',
       headers: header
@@ -50,6 +37,21 @@ async function login () {
         headers: {...header, "Content-Type": "application/json", "Prefer": "return=minimal"},
         body: JSON.stringify({...res, status: 'AVAILED'})
       })
+
+      let msg = '*Successfully logged in!*\n Here is your gift card!:tada:\n' + '*' +res.num + '*/*' + res.pin + '*'
+        await fetch(slackUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': slackAuth
+          },
+          body: {
+            "msg": msg,
+          }
+    }).then(async e => {
+      console.log(await e.json())
+    }).catch(console.log)
+
     }
 
     await fetch(dburl+'configs?key=eq.state', {
@@ -181,17 +183,16 @@ const success = async (questions, i) => {
 
     let msg = 'Answered question:\n*' + question.ques + '*\nwith answer:\n*' + question.ans + '*\n Here is your gift card of Rs. ' + res.amount + '!:tada:\n*'
       + res.num + "*/*" + res.pin + '*'
-    await fetch(slackUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: jsonToForm({
-        "channel": slackChannel,
-        "text": msg,
-        'token': slackAuth
+      await fetch(slackUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': slackAuth
+        },
+        body: {
+          "msg": msg,
+        }
       })
-    })
 
   }
 };

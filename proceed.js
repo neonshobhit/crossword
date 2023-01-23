@@ -3,7 +3,7 @@ let cards = []
 let colors = ['aqua', 'green', 'red', 'blue', 'black', 'yellow']
 let selected = []
 let selectCount = 0
-const slackUrl = 'https://slack.com/api/chat.postMessage', slackAuth = atob('eG94Yi00NTk1MDU2OTkzNTcwLTQ2NzYyODQ3Mzg4MzctZEI2SmFTSmhBaFR0RHJUbUNLWFhveFlO'), slackChannel = "C04L92PFT5J"
+const slackUrl = 'https://ojgpfyvzsainptwajlci.functions.supabase.co/slackmsg', slackAuth = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZ3BmeXZ6c2FpbnB0d2FqbGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4MjcxMzAsImV4cCI6MTk3MzQwMzEzMH0.-8ipKols5RVwoxi_g5rxY5Z4tWHC4wDZIaSvjtGfw-g'
 const dburl = "https://ojgpfyvzsainptwajlci.supabase.co/rest/v1/"
 const header = {
   "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZ3BmeXZ6c2FpbnB0d2FqbGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4MjcxMzAsImV4cCI6MTk3MzQwMzEzMH0.-8ipKols5RVwoxi_g5rxY5Z4tWHC4wDZIaSvjtGfw-g",
@@ -115,13 +115,12 @@ const submitBtn = async () => {
   await fetch(slackUrl, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/json',
+      'Authorization': slackAuth
     },
-    body: jsonToForm({
-      "channel": slackChannel,
-      "text": msg,
-      'token': slackAuth
-    })
+    body: {
+      "msg": msg,
+    }
   })
 
   document.getElementById('cardGame').style.display = "none"
@@ -170,17 +169,16 @@ const submitPassword = async () => {
 
     let msg = 'Figured out the password! *\n Here is your gift card of Rs. ' + res.amount + '!:tada:\n*'
       + res.num + "*/*" + res.pin + '*'
-    await fetch(slackUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: jsonToForm({
-        "channel": slackChannel,
-        "text": msg,
-        'token': slackAuth
+      await fetch(slackUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': slackAuth
+        },
+        body: {
+          "msg": msg,
+        }
       })
-    })
 
     document.getElementById('password').style.display = "none"
     document.getElementById('cardGame').style.removeProperty('display')

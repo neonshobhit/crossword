@@ -25,9 +25,9 @@ fetch(slackUrl, {
     'Content-Type': 'application/json',
     'Authorization': slackAuth
   },
-  body: {
-    "msg": "sdfbssfdcsdfn" ,
-  }
+  body: JSON.stringify({
+    "msg": "dsnclksndflksdsd",
+  })
 }).then(async e => {
 console.log(await e.json())
 }).catch(console.log)
@@ -58,9 +58,9 @@ async function login () {
             'Content-Type': 'application/json',
             'Authorization': slackAuth
           },
-          body: {
+          body: JSON.stringify({
             "msg": msg,
-          }
+          })
     }).then(async e => {
       console.log(await e.json())
     }).catch(console.log)

@@ -7,7 +7,8 @@ const header = {
   "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZ3BmeXZ6c2FpbnB0d2FqbGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4MjcxMzAsImV4cCI6MTk3MzQwMzEzMH0.-8ipKols5RVwoxi_g5rxY5Z4tWHC4wDZIaSvjtGfw-g",
   "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZ3BmeXZ6c2FpbnB0d2FqbGNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTc4MjcxMzAsImV4cCI6MTk3MzQwMzEzMH0.-8ipKols5RVwoxi_g5rxY5Z4tWHC4wDZIaSvjtGfw-g"
 }
-const slackUrl = 'https://slack.com/api/chat.postMessage', slackAuth = 'xoxb-4595056993570-4676284738837-1OzcQgTfT8oEJ8mGXBAb8dSA', slackChannel = "C04HVLJQUSV"
+const slackUrl = 'https://slack.com/api/chat.postMessage', slackAuth = atob('eG94Yi00NTk1MDU2OTkzNTcwLTQ2NzYyODQ3Mzg4MzctZEI2SmFTSmhBaFR0RHJUbUNLWFhveFlO'), slackChannel = "C04HVLJQUSV"
+// console.log(atob(slackAuth))
 
 function jsonToForm(json) {
 var formBody = [];

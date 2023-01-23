@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      ::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: red;
+        opacity: 1; /* Firefox */
+        font-size: 1.5rem;
+      }
+
+      :-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: red;
+        font-size: 1.5rem;
+      }
+
+      ::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: red;
+        font-size: 1.5rem;
+      }
+      .inputbox {
+        height: 40px;
+        width: 40px;
+        text-align: center;
+        padding: 0;
+        margin: 0.5px;
+        font-size: 2.5rem;
+        text-transform: uppercase;
+        border-width: 0.5px;
+        border-color: black;
+        border-radius: 7%;
+      }
+      #login{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: auto;
+        text-align: center;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        align-items: center;
+      }
+      table {
+        table-layout: fixed;
+        border-collapse: collapse;
+        word-wrap: break-word;
+      }
+      #submit {
+        position: absolute;
+        left: 95%;
+        top: 3%;
+        margin: auto;
+        text-align: center;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id ="login">
+      <h1>
+        Who's the sexiest guy you know?
+      </h1>
+      <input type="text" id="loginText"></input>
+      <br>
+      <br>
+      <button onclick="login()" id="loginButton">
+        Submit
+      </button>
+    </div>
+    <div style="display: none;" id="mainFrame">
+      <div id="starter">
+        <!-- <input type="text" class="inputbox">
+      <input type="text" class="inputbox"> -->
+      </div>
+      <div id="Questions">
+        <table>
+          <tr>
+            <th>TOP_DOWN</th>
+            <th>RIGHT_LEFT</th>
+            <th>BOTTOM_UP</th>
+          </tr>
+          <tr>
+            <td>
+              <!-- <h3></h3> -->
+              <div id="TOP_DOWN"></div>
+            </td>
+            <td>
+              <div id="RIGHT_LEFT"></div>
+            </td>
+            <td>
+              <div id="BOTTOM_UP"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div style="display:none" id="submit">
+      <button onclick="window.open(`/proceed.html`,'_blank')">
+        Proceed
+      </button>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

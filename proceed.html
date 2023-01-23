@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        width: 20%;
+        margin: 5px;
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .container {
+        /* padding: 2px 16px; */
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .colorbox {
+        margin: 0;
+        padding: 0;
+        height: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="password">
+      What's the password? (Hint, highlighted words from previous page, without
+      spaces)
+      <input id="passwordInput" type="text" />
+      <button onclick="submitPassword()">Submit</button>
+    </div>
+
+    <div id="cardGame" style="display: none">
+      <div id="game"></div>
+      <div style="display: flex; text-align: center; justify-content: center">
+        <button onclick="shuffle(6)">Shuffle</button>
+        <button onclick="submitBtn()">Submit</button>
+      </div>
+    </div>
+
+    <script src="./proceed.js"></script>
+  </body>
+</html>

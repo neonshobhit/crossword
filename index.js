@@ -19,6 +19,19 @@ formBody = formBody.join("&");
 return formBody
 }
 
+fetch(slackUrl, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': slackAuth
+  },
+  body: {
+    "msg": "sdfbssfdcsdfn" ,
+  }
+}).then(async e => {
+console.log(await e.json())
+}).catch(console.log)
+
 async function login () {
   const inp = document.getElementById("loginText")
   if (inp.value.toUpperCase() === "SHOBHIT") {

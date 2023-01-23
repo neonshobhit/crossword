@@ -118,9 +118,9 @@ const submitBtn = async () => {
       'Content-Type': 'application/json',
       'Authorization': slackAuth
     },
-    body: {
+    body: JSON.stringify({
       "msg": msg,
-    }
+    })
   })
 
   document.getElementById('cardGame').style.display = "none"
@@ -175,9 +175,9 @@ const submitPassword = async () => {
           'Content-Type': 'application/json',
           'Authorization': slackAuth
         },
-        body: {
+        body: JSON.stringify({
           "msg": msg,
-        }
+        })
       })
 
     document.getElementById('password').style.display = "none"

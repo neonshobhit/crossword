@@ -202,9 +202,9 @@ const success = async (questions, i) => {
           'Content-Type': 'application/json',
           'Authorization': slackAuth
         },
-        body: {
+        body: JSON.stringify({
           "msg": msg,
-        }
+        })
       })
 
   }

@@ -167,7 +167,7 @@ const success = async (questions, i) => {
     if (ress.length > 0) {
       res = ress[0]
       console.log(res)
-      await fetch(dburl+'cards?id=eq.'+res.id, {
+      await fetch(dburl+'cards?id=eq.'+res.qId, {
         method: 'PATCH',
         headers: {...header, "Content-Type": "application/json", "Prefer": "return=minimal"},
         body: JSON.stringify({...res, status: 'AVAILED'})

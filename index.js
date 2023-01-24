@@ -331,7 +331,7 @@ const run = async () => {
     return alert("Ho gya idhar!")
   }
 
-  const date = 25 // new Date().getDate()
+  const date = new Date().getDate() + 1
   const resp = await fetch(dburl+'questions?select=*&date=lt.'+date, {
     method: 'GET',
     headers: header
